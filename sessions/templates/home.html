@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Угадай число{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="header">
+            <h1>Игра "Угадай число"</h1>
+
+            {% if request.session.status == 'creator' %}
+                <p>Загаданное число {{player_game_info.game.value}}</p>
+
+                {% if player_game_info.game.game_over %}
+                    <p>Ваше число угадали с {{player_game_info.counter}} попыток </p>
+
+                    <form action="" method="GET">
+                        <input type="submit" value="Загадать число" />
+                    </form>
+                {% endif %}
+
+
+            {% else %}
+                <p>Введите число от 0 до 10</p>
+                <form action="" method="post">
+                   {% csrf_token %}
+                   {{ form.as_p }}
+                    <input type="submit" value="Ответить" />
+                </form>
+
+                {{message}}
+
+                    {% if player_game_info.game.game_over %}
+                        <form action="" method="GET">
+                            <input type="submit" value="Загадать число" />
+                        </form>
+                    {% endif %}
+
+            {% endif %}
+
+
+        </div>
+    </div>
+{% endblock %}

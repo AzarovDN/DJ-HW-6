@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{article.title}}{% endblock %}
+
+{% block content %}
+
+    {% if article.paid_content == True and user.profile.subscription == False%}
+        <div class="container">
+            <div class="header">
+                <h3>{{article.title}}</h3>
+                <p>У вас нет доступа к платному контенту</p>
+
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <input type="submit" value="Подписаться">
+                </form>
+
+            </div>
+        </div>
+
+    {% else %}
+        <div class="container">
+            <div class="header">
+                <h3>{{article.title}}</h3>
+                <img src="{{ article.img.url }}" alt="Изображение">
+                <p>{{article.text}}</p>
+                <p>{{profile}}</p>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

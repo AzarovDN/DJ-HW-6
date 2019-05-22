@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Выход{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="header"></div>
+        <h2>Приходите еще</h2>
+
+        <a href="/">На главную</a> <br>
+        <a href="{% url 'login'%}">Нажмите здесь, чтобы авторизоваться.</a>
+    </div>
+{% endblock %}
