@@ -26,5 +26,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('articles/', views.show_articles),
     url(r'^articles/(?P<id>[0-9]+)/', views.show_article),
+    path('subscription/', views.subscription)
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

@@ -11,7 +11,7 @@
                 <h3>{{article.title}}</h3>
                 <p>У вас нет доступа к платному контенту</p>
 
-                <form action="" method="post">
+                <form action="/subscription/" method="post">
                     {% csrf_token %}
                     <input type="submit" value="Подписаться">
                 </form>

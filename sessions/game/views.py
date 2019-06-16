@@ -48,11 +48,11 @@ def show_home(request):
 
     # если нет игры в сессии
     if not request.session.get('game', None):
-        games_list = list(Game.objects.all())
+        game = Game.objects.order_by('-id').first()
 
         # еcли игры созданы, берем последнюю
-        if games_list:
-            last_game = games_list[-1]
+        if game:
+            last_game = game
 
             # если последняя игра завершена, создаем новую
             if last_game.game_over:
@@ -69,7 +69,7 @@ def show_home(request):
 
             # если последняя игра не завершена добавляем в игру игрока
             else:
-                player_game_info = list(PlayerGameInfo.objects.all())[-1]
+                player_game_info = PlayerGameInfo.objects.last()
                 request.session['player_game_info'] = player_game_info.id
                 player_id = request.session['player']
                 player = Player.objects.get(id=player_id)
